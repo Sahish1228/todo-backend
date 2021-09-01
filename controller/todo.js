@@ -19,31 +19,72 @@ let todoList = [
  const todoController = {
      create: (req, res) => {
         const { body } = req;
-        todoList.push(body);
+        const id = Math.ceil(Math.random()*Math.pow(10,5));
+        const newTask= {
+            id: id,
+            ...body
+        }
+        todoList.push(newTask);
         res.status(200).send({
             message: "Successfully Added",
             status: true,
         });
     },
-    fetchList: (req, res ) => {
-        res.send(todoList);
-    },
+
     update: (req, res) => {
-        // const { body } = req;
-        // const { id } = req.params;
-    //    todoList.forEach(element => {
-    //        if(element.id == id){
-    //            console.log("before update:", element);
-    //            element ={...element, ...body};
-    //            console.log("data to be updated:", body);
-    //            console.log("updated data:", element);
-    //        }            
-    //     });
+        const { body } = req;
+        const { id } = req.params;
+        let i=0;
+       todoList.forEach(element => {
+           if(element.id == id){
+               console.log("before update:", element);
+               todoList[i] = {...element, ...body};
+               console.log("data to be updated:", body);
+               console.log("updated data:", element);
+           }
+           i++;            
+        });
+    // for(let i=0;i<todoList.length;i++){
+    //     if(todoList[i].id === id){
+    //         todoList[i] = {... todoList[i], ...body };
+    //     }
+    //}
     console.log("hello from update controller");
+    console.log("updated list :", todoList);
         res.send({
             message: "Successfully updated",
             status: true,
+            todoList,
         });
+    }, 
+    fetchList: (req, res ) => {
+        res.send(todoList);
+    },
+    delete: (req, res ) => {
+        const{ id } = req.params;
+        let i=0;
+        todoList.forEach(element =>{
+            if(element.id == id){
+                todoList.splice(i,1);
+            }
+            i++;
+        })
+        res.send({
+            message: "Deleted Successfully",
+            status: true,
+        })
+    },
+    completeStatus: (req, res) =>{
+        const{ id } =req.params;
+        todoList.forEach(element => {
+            if(element.id == id){
+                element.completedStatus = !element.completedStatus;
+            }
+        })
+        res.send({
+            message: "Completed successfully",
+            status: true
+        })
     }
 
  }
