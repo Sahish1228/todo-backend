@@ -56,7 +56,20 @@ let todoList = [
             status: true,
             todoList,
         });
-    }, 
+    },
+    fetchTask: (req, res) =>{
+        const { id } =req.params;
+        let task = {};
+        todoList.forEach(element => {
+            if(element.id == id){
+                task = element;
+            }
+        });
+        res.send({
+            status: true,
+            data: task
+        })
+    },
     fetchList: (req, res ) => {
         res.send(todoList);
     },

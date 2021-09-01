@@ -7,6 +7,7 @@ router.get('/', todoController.fetchList);
 router.put('/:id', todoController.update);
 router.delete('/:id', todoController.delete);
 router.patch('/:id', todoController.completeStatus);
+router.get('/:id', todoController.fetchTask);
 
 
 module.exports = router;
