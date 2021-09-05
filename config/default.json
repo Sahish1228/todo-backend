@@ -1,0 +1,4 @@
+{
+   
+   "mongodbURI":"mongodb+srv://ashishdb:admin%40123@cluster0.guvcf.mongodb.net/todo?retryWrites=true&w=majority"
+}

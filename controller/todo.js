@@ -42,7 +42,7 @@ let todoList = [
                console.log("data to be updated:", body);
                console.log("updated data:", element);
            }
-           i++;            
+           i++;
         });
     // for(let i=0;i<todoList.length;i++){
     //     if(todoList[i].id === id){
