@@ -34,5 +34,28 @@ res.status(200).send({
         })
     }
   },
+  fetchTask: async (req, res  ) => {
+    try{
+      const { id } = req.params;
+      let existingTask = await Task.findOne({id});
+      if(existingTask){
+          return res.status(200).send({
+              status: true,
+              data: existingTask,
+          });
+      }
+      res.status(400).send({
+          message: "Task does not exist",
+          status: false,
+      }) 
+
+    }catch(err){
+        console.log(err);
+        res.status(400).send({
+            message: "Something went wrong",
+            status: false
+        })
+    }
+  }
 };
 module.exports = taskController;

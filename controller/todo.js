@@ -65,6 +65,12 @@ let todoList = [
                 task = element;
             }
         });
+        if(!task){
+            return res.status(400).send({
+                message: "task doesn't exist ",
+                status: false
+            })
+        }
         res.send({
             status: true,
             data: task

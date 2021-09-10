@@ -4,7 +4,9 @@
   "description": "todo ap with backend api",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index",
+    "start": "node index.js",
+    "prerestart": "npm i",
+    "dev": "nodemon index",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
