@@ -31,6 +31,6 @@ app.get("*", (req, res) => {
   res.send("Sorry thus url does not exist");
 });
 
-app.listen(9000, () => {
+app.listen( process.env.PORT || 9000, () => {
   console.log("Server is listening to port 9000");
 });
